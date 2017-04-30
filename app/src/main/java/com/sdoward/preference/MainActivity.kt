@@ -1,14 +1,9 @@
 package com.sdoward.preference
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
-import android.view.View
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.TextView
 
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -16,6 +11,13 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity(), PreferenceContract {
+
+    companion object {
+
+        fun start(context: Context) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
+    }
 
     private val databaseReference by lazy { FirebaseDatabase.getInstance().reference }
     private val preferenceMaster = PreferenceMaster(this, FirebaseSessionRepository(databaseReference))
