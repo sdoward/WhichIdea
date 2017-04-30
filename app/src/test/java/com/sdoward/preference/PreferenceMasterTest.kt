@@ -7,7 +7,8 @@ import org.junit.Test
 class PreferenceMasterTest {
 
     val preferenceContract: PreferenceContract = mock()
-    val preferenceMaster = PreferenceMaster(preferenceContract)
+    val sessionRepository: SessionRepository = mock()
+    val preferenceMaster = PreferenceMaster(preferenceContract, sessionRepository)
 
     @Test
     fun shouldShowFirstInput() {
@@ -57,6 +58,13 @@ class PreferenceMasterTest {
     @Test(expected = IllegalArgumentException::class)
     fun shouldThrowWhenFirstNotSet() {
         preferenceMaster.setSecondPreference(1)
+    }
+
+    @Test
+    fun shouldSaveSession() {
+        preferenceMaster.setFirstPreference(0)
+        preferenceMaster.setSecondPreference(1)
+        verify(sessionRepository).saveSession(Session(0, 1))
     }
 
 

@@ -22,18 +22,19 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'com.nhaarman:mockito-kotlin:1.4.0'
-    testCompile 'org.assertj:assertj-core:1.7.1'
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.google.firebase:firebase-database:10.0.1'
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.nhaarman:mockito-kotlin:1.4.0'
+    testCompile 'org.assertj:assertj-core:1.7.1'
 }
 
 configurations.all {
@@ -45,3 +46,5 @@ configurations.all {
 repositories {
     mavenCentral()
 }
+
+apply plugin: 'com.google.gms.google-services'

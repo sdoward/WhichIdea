@@ -12,11 +12,13 @@ import android.widget.TextView
 
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity(), PreferenceContract {
 
-    private val preferenceMaster = PreferenceMaster(this)
+    private val databaseReference by lazy { FirebaseDatabase.getInstance().reference }
+    private val preferenceMaster = PreferenceMaster(this, FirebaseSessionRepository(databaseReference))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
