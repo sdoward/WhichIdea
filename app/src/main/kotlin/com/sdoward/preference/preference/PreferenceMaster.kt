@@ -3,7 +3,7 @@ package com.sdoward.preference.preference
 import com.sdoward.preference.requireBetween
 
 class PreferenceMaster(private val preferenceContract: PreferenceContract,
-                       private val sessionRepository: SessionRepository) {
+                       private val repository: Repository) {
 
     companion object {
         val NOT_SET = -1
@@ -36,7 +36,7 @@ class PreferenceMaster(private val preferenceContract: PreferenceContract,
         requireBetween(secondPreference, LOWER_VALUE, HIGHER_VALUE) { getMessage("second") }
         this.secondPreference = secondPreference
         require(firstPreference != NOT_SET) { getMessage("first") }
-        sessionRepository.saveSession(Session(firstPreference, secondPreference))
+        repository.saveSession(Session(firstPreference, secondPreference))
         preferenceContract.showResult("First person: $firstPreference Second person: $secondPreference")
     }
 

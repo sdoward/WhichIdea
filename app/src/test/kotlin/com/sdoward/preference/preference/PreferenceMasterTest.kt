@@ -5,14 +5,14 @@ import com.nhaarman.mockito_kotlin.verify
 import com.sdoward.preference.preference.PreferenceContract
 import com.sdoward.preference.preference.PreferenceMaster
 import com.sdoward.preference.preference.Session
-import com.sdoward.preference.preference.SessionRepository
+import com.sdoward.preference.preference.Repository
 import org.junit.Test
 
 class PreferenceMasterTest {
 
     val preferenceContract: PreferenceContract = mock()
-    val sessionRepository: SessionRepository = mock()
-    val preferenceMaster = PreferenceMaster(preferenceContract, sessionRepository)
+    val repository: Repository = mock()
+    val preferenceMaster = PreferenceMaster(preferenceContract, repository)
 
     @Test
     fun shouldShowFirstInput() {
@@ -68,7 +68,7 @@ class PreferenceMasterTest {
     fun shouldSaveSession() {
         preferenceMaster.setFirstPreference(0)
         preferenceMaster.setSecondPreference(1)
-        verify(sessionRepository).saveSession(Session(0, 1))
+        verify(repository).saveSession(Session(0, 1))
     }
 
 

@@ -8,9 +8,12 @@ import com.sdoward.preference.preference.MainActivity
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.firebase.ui.auth.ResultCodes
-
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.sdoward.preference.preference.FirebaseRepository
 
 class SigninActivity : AppCompatActivity() {
 
@@ -20,15 +23,22 @@ class SigninActivity : AppCompatActivity() {
 
     }
 
+    private val presenter = UserPresenter(FirebaseRepository(FirebaseDatabase.getInstance().reference))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val auth = FirebaseAuth.getInstance()
         if (auth.currentUser != null) {
+            presenter.acceptUser(getUser(auth.currentUser!!))
             MainActivity.start(this)
         } else {
             startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),
                     RESULT_CODE)
         }
+    }
+
+    fun getUser(firebaseUser: FirebaseUser): User {
+      return User(firebaseUser.uid, firebaseUser.displayName!!, firebaseUser.email!!, firebaseUser.photoUrl.toString())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

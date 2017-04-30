@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), PreferenceContract {
     }
 
     private val databaseReference by lazy { FirebaseDatabase.getInstance().reference }
-    private val preferenceMaster = PreferenceMaster(this, FirebaseSessionRepository(databaseReference))
+    private val preferenceMaster = PreferenceMaster(this, FirebaseRepository(databaseReference))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
