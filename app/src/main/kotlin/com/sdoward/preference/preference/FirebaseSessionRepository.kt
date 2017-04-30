@@ -1,4 +1,4 @@
-package com.sdoward.preference
+package com.sdoward.preference.preference
 
 import com.google.firebase.database.DatabaseReference
 

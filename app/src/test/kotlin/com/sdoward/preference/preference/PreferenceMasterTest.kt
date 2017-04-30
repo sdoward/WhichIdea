@@ -1,7 +1,11 @@
-package com.sdoward.preference
+package com.sdoward.preference.preference
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
+import com.sdoward.preference.preference.PreferenceContract
+import com.sdoward.preference.preference.PreferenceMaster
+import com.sdoward.preference.preference.Session
+import com.sdoward.preference.preference.SessionRepository
 import org.junit.Test
 
 class PreferenceMasterTest {

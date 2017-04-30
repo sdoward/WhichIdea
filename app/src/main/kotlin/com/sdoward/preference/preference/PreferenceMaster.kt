@@ -1,4 +1,6 @@
-package com.sdoward.preference
+package com.sdoward.preference.preference
+
+import com.sdoward.preference.requireBetween
 
 class PreferenceMaster(private val preferenceContract: PreferenceContract,
                        private val sessionRepository: SessionRepository) {
@@ -38,7 +40,7 @@ class PreferenceMaster(private val preferenceContract: PreferenceContract,
         preferenceContract.showResult("First person: $firstPreference Second person: $secondPreference")
     }
 
-    private fun getMessage(number: String) = "$number preference isn't between $LOWER_VALUE and $HIGHER_VALUE"
+    private fun getMessage(number: String) = "$number preference isn't between ${LOWER_VALUE} and ${HIGHER_VALUE}"
 
 }
 

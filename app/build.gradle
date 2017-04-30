@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
 }
 
 dependencies {
@@ -38,6 +42,7 @@ dependencies {
     testCompile 'com.nhaarman:mockito-kotlin:1.4.0'
     testCompile 'org.assertj:assertj-core:1.7.1'
 }
+
 
 configurations.all {
     resolutionStrategy {

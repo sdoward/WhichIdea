@@ -1,4 +1,4 @@
-package com.sdoward.preference
+package com.sdoward.preference.preference
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.google.firebase.database.FirebaseDatabase
+import com.sdoward.preference.R
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity(), PreferenceContract {
