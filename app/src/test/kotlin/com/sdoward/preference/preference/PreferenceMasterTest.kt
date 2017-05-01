@@ -12,25 +12,26 @@ class PreferenceMasterTest {
 
     val preferenceContract: PreferenceContract = mock()
     val repository: Repository = mock()
-    val preferenceMaster = PreferenceMaster(preferenceContract, repository)
+    val preferenceMaster = PreferenceMaster(preferenceContract, repository,
+            mutableListOf(Pair("Sam", -1), Pair("Michaela", -1)))
 
     @Test
     fun shouldShowFirstInput() {
         preferenceMaster.start()
-        verify(preferenceContract).showFirstPreference()
+        verify(preferenceContract).showPreferenceInput("Sam")
     }
 
     @Test
     fun shouldShowSecondInput() {
-        preferenceMaster.setFirstPreference(0)
-        verify(preferenceContract).showSecondPreference()
+        preferenceMaster.setPreference(0)
+        verify(preferenceContract).showPreferenceInput("Michaela")
     }
 
     @Test
     fun shouldShowResult() {
-        preferenceMaster.setFirstPreference(0)
-        preferenceMaster.setSecondPreference(1)
-        verify(preferenceContract).showResult("First person: 0 Second person: 1")
+        preferenceMaster.setPreference(0)
+        preferenceMaster.setPreference(1)
+        verify(preferenceContract).showResult("Sam : 0\nMichaela : 1\n")
     }
 
     @Test
@@ -41,35 +42,12 @@ class PreferenceMasterTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun shouldThrowWhenFirstBelow0() {
-        preferenceMaster.setFirstPreference(-1)
+        preferenceMaster.setPreference(-1)
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun shouldThrowWhenFirstAbove10() {
-        preferenceMaster.setFirstPreference(11)
+        preferenceMaster.setPreference(11)
     }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrowWhenSecondBelow0() {
-        preferenceMaster.setSecondPreference(-1)
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrowWhenSecondAbove10() {
-        preferenceMaster.setSecondPreference(11)
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrowWhenFirstNotSet() {
-        preferenceMaster.setSecondPreference(1)
-    }
-
-    @Test
-    fun shouldSaveSession() {
-        preferenceMaster.setFirstPreference(0)
-        preferenceMaster.setSecondPreference(1)
-        verify(repository).saveSession(Session(0, 1))
-    }
-
 
 }

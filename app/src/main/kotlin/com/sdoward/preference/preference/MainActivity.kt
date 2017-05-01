@@ -21,52 +21,42 @@ class MainActivity : AppCompatActivity(), PreferenceContract {
     }
 
     private val databaseReference by lazy { FirebaseDatabase.getInstance().reference }
-    private val preferenceMaster = PreferenceMaster(this, FirebaseRepository(databaseReference))
+    private val preferenceMaster = PreferenceMaster(this, FirebaseRepository(databaseReference),
+            mutableListOf(Pair("Sam", -1), Pair("Michaela", -1)))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         startView.setOnClickListener { preferenceMaster.start() }
         resultView.setOnClickListener { preferenceMaster.reset() }
-        firstPreferenceButton.setOnClickListener {
-            preferenceMaster.setFirstPreference(firstPreferenceNumberPicker.value)
+        submitButton.setOnClickListener {
+            preferenceMaster.setPreference(numberPicker.value)
         }
-        secondPreferenceButton.setOnClickListener {
-            preferenceMaster.setSecondPreference(secondPreferenceNumberPicker.value)
+        numberPicker.apply {
+            minValue = 0
+            maxValue = 10
         }
-        listOf(firstPreferenceNumberPicker, secondPreferenceNumberPicker)
-                .forEach {
-                    it.minValue = 0
-                    it.maxValue = 10
-                }
     }
 
-    override fun showFirstPreference() {
-        startView.visibility = GONE
-        secondPreferenceView.visibility = GONE
-        firstPreferenceView.visibility = VISIBLE
-        resultView.visibility = GONE
-    }
 
-    override fun showSecondPreference() {
+    override fun showPreferenceInput(name: String) {
         startView.visibility = GONE
-        secondPreferenceView.visibility = VISIBLE
-        firstPreferenceView.visibility = GONE
         resultView.visibility = GONE
+        playerTextView.text = name
+        numberPicker.value = 0
+        preferenceView.visibility = VISIBLE
     }
 
     override fun showResult(result: String) {
         startView.visibility = GONE
-        secondPreferenceView.visibility = GONE
-        firstPreferenceView.visibility = GONE
+        preferenceView.visibility = GONE
         resultView.visibility = VISIBLE
         resultTextView.text = result
     }
 
     override fun showStartInstructions() {
         startView.visibility = VISIBLE
-        secondPreferenceView.visibility = GONE
-        firstPreferenceView.visibility = GONE
+        preferenceView.visibility = GONE
         resultView.visibility = GONE
     }
 

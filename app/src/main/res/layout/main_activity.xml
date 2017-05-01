@@ -34,7 +34,7 @@
             android:visibility="visible" />
 
         <LinearLayout
-            android:id="@+id/firstPreferenceView"
+            android:id="@+id/preferenceView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -42,45 +42,18 @@
             android:visibility="gone">
 
             <TextView
+                android:id="@+id/playerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="First person: Enter preference"
                 android:textSize="20sp" />
 
             <NumberPicker
-                android:id="@+id/firstPreferenceNumberPicker"
+                android:id="@+id/numberPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/firstPreferenceButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Submit" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/secondPreferenceView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Second person: Enter preference"
-                android:textSize="20sp" />
-
-            <NumberPicker
-                android:id="@+id/secondPreferenceNumberPicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/secondPreferenceButton"
+                android:id="@+id/submitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit" />

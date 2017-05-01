@@ -1,9 +1,11 @@
 package com.sdoward.preference.preference
 
+import android.util.Log
 import com.sdoward.preference.requireBetween
 
 class PreferenceMaster(private val preferenceContract: PreferenceContract,
-                       private val repository: Repository) {
+                       private val repository: Repository,
+                       private val names: MutableList<Pair<String, Int>>) {
 
     companion object {
         val NOT_SET = -1
@@ -11,33 +13,31 @@ class PreferenceMaster(private val preferenceContract: PreferenceContract,
         val LOWER_VALUE = 0
     }
 
-    private var firstPreference: Int = NOT_SET
-    private var secondPreference: Int = NOT_SET
+    private var pointer = 0
 
     fun reset() {
-        firstPreference = NOT_SET
-        secondPreference = NOT_SET
         preferenceContract.showStartInstructions()
     }
 
     fun start() {
-        firstPreference = NOT_SET
-        secondPreference = NOT_SET
-        preferenceContract.showFirstPreference()
+        preferenceContract.showPreferenceInput(names[pointer].first)
     }
 
-    fun setFirstPreference(firstPreference: Int) {
-        requireBetween(firstPreference, LOWER_VALUE, HIGHER_VALUE) { getMessage("first") }
-        this.firstPreference = firstPreference
-        preferenceContract.showSecondPreference()
+    fun setPreference(preference: Int) {
+        requireBetween(preference, LOWER_VALUE, HIGHER_VALUE) { getMessage("position: $pointer") }
+        names.set(pointer, names[pointer].copy(second = preference))
+        pointer++
+        if (pointer >= names.size) {
+            showResult()
+        } else {
+            preferenceContract.showPreferenceInput(names[pointer].first)
+        }
     }
 
-    fun setSecondPreference(secondPreference: Int) {
-        requireBetween(secondPreference, LOWER_VALUE, HIGHER_VALUE) { getMessage("second") }
-        this.secondPreference = secondPreference
-        require(firstPreference != NOT_SET) { getMessage("first") }
-        repository.saveSession(Session(firstPreference, secondPreference))
-        preferenceContract.showResult("First person: $firstPreference Second person: $secondPreference")
+    private fun showResult() {
+        names.fold("") { original, next ->
+            original.plus(next.first).plus(" : ").plus(next.second).plus("\n")
+        }.let { preferenceContract.showResult(it) }
     }
 
     private fun getMessage(number: String) = "$number preference isn't between ${LOWER_VALUE} and ${HIGHER_VALUE}"
@@ -47,15 +47,10 @@ class PreferenceMaster(private val preferenceContract: PreferenceContract,
 
 interface PreferenceContract {
 
-
-    fun showFirstPreference()
-
-
-    fun showSecondPreference()
-
-
     fun showResult(result: String)
 
     fun showStartInstructions()
+
+    fun showPreferenceInput(name: String)
 
 }
