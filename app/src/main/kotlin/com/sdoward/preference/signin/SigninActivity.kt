@@ -14,6 +14,7 @@ import com.firebase.ui.auth.ResultCodes
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.sdoward.preference.preference.FirebaseRepository
+import com.sdoward.preference.setup.SetupActivity
 
 class SigninActivity : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class SigninActivity : AppCompatActivity() {
         val auth = FirebaseAuth.getInstance()
         if (auth.currentUser != null) {
             presenter.acceptUser(getUser(auth.currentUser!!))
-            MainActivity.start(this)
+            SetupActivity.start(this)
         } else {
             startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().build(),
                     RESULT_CODE)

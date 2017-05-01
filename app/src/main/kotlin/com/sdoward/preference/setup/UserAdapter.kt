@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.sdoward.preference.R
-import com.sdoward.preference.signin.User
 
-class UserAdapter(private val layoutInflater: LayoutInflater, private val users: List<User>)
+class UserAdapter(private val layoutInflater: LayoutInflater, private val users: List<SelectableUser>)
     : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+
+    fun getUsers(): List<SelectableUser> {
+        return users
+    }
 
     override fun getItemCount(): Int {
         return users.size
@@ -19,10 +22,16 @@ class UserAdapter(private val layoutInflater: LayoutInflater, private val users:
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = users[position].name
+        val user = users[position]
+        holder.textView.text = user.name
+        holder.textView.setOnClickListener {
+            user.selected = !user.selected
+            val backgroundColor = if (user.selected) R.color.colorAccent else android.R.color.background_light
+            it.setBackgroundResource(backgroundColor)
+        }
     }
 
     class ViewHolder(view: TextView) : RecyclerView.ViewHolder(view) {
-        var textView = view
+        val textView = view
     }
 }

@@ -28,7 +28,7 @@ class SetupPresenterTest {
         Mockito.`when`(repository.getUsers()).thenReturn(Single.just(listOf(User())))
         presenter.start()
         verify(setUpContract).render(SetupViewState(true, emptyList()))
-        verify(setUpContract).render(SetupViewState(false, listOf(User())))
+        verify(setUpContract).render(SetupViewState(false, listOf(SelectableUser(""))))
     }
 
 }

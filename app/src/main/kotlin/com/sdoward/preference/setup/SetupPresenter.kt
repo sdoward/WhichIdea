@@ -11,6 +11,7 @@ class SetupPresenter(private val repository: Repository, private val setUpContra
     fun start() {
         setUpContract.render(SetupViewState(true, emptyList()))
         disposable = repository.getUsers()
+                .map { it.map { SelectableUser(it.name) } }
                 .map { SetupViewState(false, it) }
                 .subscribeBy(
                         onSuccess = { setUpContract.render(it) }
