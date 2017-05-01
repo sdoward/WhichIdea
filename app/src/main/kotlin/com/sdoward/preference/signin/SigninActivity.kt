@@ -8,12 +8,10 @@ import com.sdoward.preference.preference.MainActivity
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
 import com.firebase.ui.auth.ResultCodes
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
-import com.sdoward.preference.data.FirebaseRepository
+import com.sdoward.preference.data.RepositoryProvider
 import com.sdoward.preference.setup.SetupActivity
 
 class SigninActivity : AppCompatActivity() {
@@ -24,7 +22,7 @@ class SigninActivity : AppCompatActivity() {
 
     }
 
-    private val presenter = UserPresenter(FirebaseRepository(FirebaseDatabase.getInstance().reference))
+    private val presenter = UserPresenter(RepositoryProvider.get())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

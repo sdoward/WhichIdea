@@ -12,7 +12,7 @@ import android.view.View.VISIBLE
 import com.google.firebase.database.FirebaseDatabase
 
 import com.sdoward.preference.R
-import com.sdoward.preference.data.FirebaseRepository
+import com.sdoward.preference.data.RepositoryProvider
 import kotlinx.android.synthetic.main.setup_activity.*
 
 class SetupActivity : AppCompatActivity(), SetUpContract {
@@ -24,7 +24,7 @@ class SetupActivity : AppCompatActivity(), SetUpContract {
         }
     }
 
-    private val presenter = SetupPresenter(FirebaseRepository(FirebaseDatabase.getInstance().reference), this)
+    private val presenter = SetupPresenter(RepositoryProvider.get(), this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

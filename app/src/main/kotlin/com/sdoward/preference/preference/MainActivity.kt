@@ -10,6 +10,7 @@ import android.view.View.VISIBLE
 import com.google.firebase.database.FirebaseDatabase
 import com.sdoward.preference.R
 import com.sdoward.preference.data.FirebaseRepository
+import com.sdoward.preference.data.RepositoryProvider
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity(), PreferenceContract {
@@ -21,8 +22,7 @@ class MainActivity : AppCompatActivity(), PreferenceContract {
         }
     }
 
-    private val databaseReference by lazy { FirebaseDatabase.getInstance().reference }
-    private val preferenceMaster = PreferenceMaster(this, FirebaseRepository(databaseReference),
+    private val preferenceMaster = PreferenceMaster(this, RepositoryProvider.get(),
             mutableListOf(Pair("Sam", -1), Pair("Michaela", -1)))
 
     override fun onCreate(savedInstanceState: Bundle?) {
