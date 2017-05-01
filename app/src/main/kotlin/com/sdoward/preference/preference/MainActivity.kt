@@ -9,6 +9,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.google.firebase.database.FirebaseDatabase
 import com.sdoward.preference.R
+import com.sdoward.preference.data.FirebaseRepository
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity(), PreferenceContract {

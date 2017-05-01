@@ -1,6 +1,6 @@
 package com.sdoward.preference.signin
 
-import com.sdoward.preference.preference.Repository
+import com.sdoward.preference.data.Repository
 import io.reactivex.rxkotlin.subscribeBy
 
 class UserPresenter(private val repository: Repository) {

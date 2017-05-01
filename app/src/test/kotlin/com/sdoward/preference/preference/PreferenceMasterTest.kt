@@ -5,7 +5,7 @@ import com.nhaarman.mockito_kotlin.verify
 import com.sdoward.preference.preference.PreferenceContract
 import com.sdoward.preference.preference.PreferenceMaster
 import com.sdoward.preference.preference.Session
-import com.sdoward.preference.preference.Repository
+import com.sdoward.preference.data.Repository
 import org.junit.Test
 
 class PreferenceMasterTest {

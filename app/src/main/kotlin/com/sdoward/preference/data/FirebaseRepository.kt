@@ -1,8 +1,9 @@
-package com.sdoward.preference.preference
+package com.sdoward.preference.data
 
 import com.google.firebase.database.*
 import com.sdoward.preference.getSessionsReference
 import com.sdoward.preference.getUsersReference
+import com.sdoward.preference.preference.Session
 import com.sdoward.preference.signin.User
 import io.reactivex.Single
 

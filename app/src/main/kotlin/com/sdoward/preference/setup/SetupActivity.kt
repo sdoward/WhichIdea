@@ -12,7 +12,7 @@ import android.view.View.VISIBLE
 import com.google.firebase.database.FirebaseDatabase
 
 import com.sdoward.preference.R
-import com.sdoward.preference.preference.FirebaseRepository
+import com.sdoward.preference.data.FirebaseRepository
 import kotlinx.android.synthetic.main.setup_activity.*
 
 class SetupActivity : AppCompatActivity(), SetUpContract {

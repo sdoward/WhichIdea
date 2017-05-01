@@ -1,6 +1,6 @@
 package com.sdoward.preference.setup
 
-import com.sdoward.preference.preference.Repository
+import com.sdoward.preference.data.Repository
 import io.reactivex.disposables.Disposables
 import io.reactivex.rxkotlin.subscribeBy
 

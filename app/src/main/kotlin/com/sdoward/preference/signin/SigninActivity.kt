@@ -13,7 +13,7 @@ import android.widget.Toast
 import com.firebase.ui.auth.ResultCodes
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import com.sdoward.preference.preference.FirebaseRepository
+import com.sdoward.preference.data.FirebaseRepository
 import com.sdoward.preference.setup.SetupActivity
 
 class SigninActivity : AppCompatActivity() {

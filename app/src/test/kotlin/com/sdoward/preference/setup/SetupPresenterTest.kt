@@ -2,7 +2,7 @@ package com.sdoward.preference.setup
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
-import com.sdoward.preference.preference.Repository
+import com.sdoward.preference.data.Repository
 import com.sdoward.preference.signin.User
 import io.reactivex.Single
 import org.junit.Test
